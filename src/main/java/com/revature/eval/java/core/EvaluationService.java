@@ -2,8 +2,14 @@ package com.revature.eval.java.core;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class EvaluationService {
+	
 
 	/**
 	 * 1.A Speed Converter - Convert to MilesPerHour
@@ -18,13 +24,24 @@ public class EvaluationService {
 	 * Otherwise if it is positive, calculate the value of miles per hour, round it
 	 * and return it. For conversion and rounding use Math.round().
 	 */
-	static class SpeedConverter {
+	static class SpeedConverter 
+	{
 
-		public static long toMilesPerHour(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+		public static long toMilesPerHour(double kilometersPerHour) 
+		{
+			double milesPerHour = 0;
+			if (kilometersPerHour<0) 
+				{
+					return -1;
+				}
+			else
+				{
+					milesPerHour = kilometersPerHour/1.609344;
+					return Math.round(milesPerHour);
+				}				
+			
 		}
-
+	//===========================================================================
 		/**
 		 * 1.B Speed Converter - Print Conversion
 		 * 
@@ -40,11 +57,23 @@ public class EvaluationService {
 		 * If the parameter kilometersPerHour is < 0, then print the text "Invalid
 		 * Value"
 		 */
-		public static String printConversion(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return null;
-		}
-	}
+		public static String printConversion(double kilometersPerHour) 
+		  {
+		
+			double milesPerHour;
+			if (kilometersPerHour < 0) 
+				{
+					return "Invalid Value" ;
+				}
+			else 
+				{
+					milesPerHour = kilometersPerHour/1.609344;
+					return (kilometersPerHour + " km/h = " + Math.round(milesPerHour) + " mi/h");
+				}
+			}
+		}			
+
+//===========================================================================================		
 
 	/**
 	 * 2. MegaBytes and KiloBytes
@@ -66,11 +95,27 @@ public class EvaluationService {
 	 * If the parameter kiloBytes is less than 0 then print the text "Invalid
 	 * Value".
 	 */
-	public String printMegaBytesAndKiloBytes(int XX) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	
+		public String printMegaBytesAndKiloBytes(int kiloBytes) 
+		{
+		
+			int megaBytesRem;
+			int megaBytes;
+		
+			if (kiloBytes < 0) 
+				{
+					return "Invalid Value";
+				}
+		
+			else 
+				{
+					megaBytes = kiloBytes/1024;
+					megaBytesRem = kiloBytes%1024;
+					return kiloBytes + " KB = " + megaBytes + " MB and "+ (megaBytesRem + " KB");
+				}
+		
 	}
-
+//=====================================================================================
 	/**
 	 * 3. Barking Dog
 	 * 
@@ -90,11 +135,26 @@ public class EvaluationService {
 	 * 
 	 * If the hourOfDay parameter is less than 0 or greater than 23, return false.
 	 */
-	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) 
+	{
+	
+		if (hourOfDay>=0 && hourOfDay<=23) 
+			{
+				if ((hourOfDay<8 || hourOfDay>22) && isBarking)
+					{
+						return true;
+					}
+				else
+					{
+						return false;
+					}
+			}
+		else
+			{
+				return false;
+			}
 	}
-
+//=====================================================================================
 	/**
 	 * 4. DecimalComparator
 	 * 
@@ -106,11 +166,28 @@ public class EvaluationService {
 	 * 
 	 * Otherwise, return false;
 	 */
-	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) 
+	{
+		
+		firstNum = firstNum * 1000;
+		secondNum = secondNum * 1000;
+		
+		int firstNumInt = (int) firstNum;
+		int secondNumInt = (int) secondNum;
+		
+		if (firstNumInt == secondNumInt) 
+			{
+				return true;
+			}
+			
+			else
+			{
+				return false;
+			}
+	
+		
 	}
-
+//====================================================================================
 	/**
 	 * 5. Teen Number Checker
 	 * 
@@ -121,22 +198,37 @@ public class EvaluationService {
 	 * parameters is in range 13(inclusive) - 19 (inclusive). Otherwise return
 	 * false.
 	 */
-	static class TeenNumberChecker {
+	static class TeenNumberChecker 
+	{
 
-		public static boolean hasTeen(int x, int y, int z) {
-			// TODO Write an implementation for this method declaration
-			return false;
+		public static boolean hasTeen(int x, int y, int z) 
+		{
+			if (isTeen(x) || isTeen(y) || isTeen(z))
+				{
+					return true;
+				}
+			else 
+			{
+				return false;
+			}
+		
 		}
+		
+		public static boolean isTeen(int number) 
+		{
+			if (number>=13 && number<=19)
+				{
+					return true; 
+				}
+			else 
+				{
+					return false;
+				}
+		
 
-		// We can initialize isTeen method first
-		// Then pass the parameter to hasTeen method
-
-		public static boolean isTeen(int number) {
-			// TODO Write an implementation for this method declaration
-			return false;
 		}
 	}
-
+//=====================================================================================
 	/**
 	 * 6. Minutes To Years and Days Calculator
 	 * 
@@ -152,11 +244,20 @@ public class EvaluationService {
 	 * XX represents the original value minutes. YY represents the calculated years.
 	 * ZZ represents the calculated days.
 	 */
-	public String printYearsAndDays(long minutes) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String printYearsAndDays(long minutes) 
+	{
+		
+		if (minutes<0)
+			{
+				return "Invalid Value";
+			}
+		else 
+			{
+				return (minutes+" min = " + (minutes/525600)+ " y and " + ((minutes / 1440)% 365)+ " d");
+			}
+	
 	}
-
+//==========================================================================================	
 	/**
 	 * 7. Number In Word
 	 * 
@@ -166,11 +267,60 @@ public class EvaluationService {
 	 * for any other number including negative numbers. You can use if-else
 	 * statement or switch statement whatever is easier for you.
 	 */
-	public String printNumberInWord(int number) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String printNumberInWord(int number) 
+	{
+		String printString= "";
+		
+		switch(number) 
+			{
+				case 0:
+					printString="ZERO";	
+				break;
+				
+				
+				case 1:
+					printString="ONE";	
+				break;
+				
+				case 2:
+					printString="TWO";	
+				break;
+				
+				case 3:
+					printString="THREE";	
+				break;
+				
+				case 4:
+					printString="FOUR";	
+				break;
+				
+				case 5:
+					printString="FIVE";	
+				break;
+				
+				case 6:
+					printString="SIX";	
+				break;
+				
+				case 7:
+					printString="SEVEN";	
+				break;
+				
+				case 8:
+					printString="EIGHT";	
+				break;
+				
+				case 9:
+					printString="NINE";	;
+				break;
+				
+				default:
+					printString="OTHER";
+			
+			}
+		return printString;	
 	}
-
+//=================================================================================
 	/**
 	 * 8. Greatest Common Divisor
 	 * 
@@ -190,11 +340,27 @@ public class EvaluationService {
 	 * The greatest common divisor is 6 since both 12 and 30 can be divided by 6,
 	 * and there is no resulting remainder.
 	 */
-	public int getGreatestCommonDivisor(int first, int second) {
-		// TODO Write an implementation for this method declaration
-		return 0;
-	}
+	public int getGreatestCommonDivisor(int first, int second) 
+	{
+	
+		int gcd=1;
+		
+		if (first<10 || second<10)
+			{
+				return -1;
+			}
+		else for(int i = 1; i <= first && i <= second; i++) 
+			{
+			
+	            if(first%i==0 && second%i==0)
+	            {
+	                gcd = i;
+	            }
+	         }
+		 return gcd;
+     }
 
+//=====================================================================================
 	/**
 	 * 9. First and Last Digit Sum
 	 * 
@@ -208,22 +374,45 @@ public class EvaluationService {
 	 * If the number is negative then the method needs to return -1 to indicate an
 	 * invalid value.
 	 */
-	public int sumFirstAndLastDigit(int num) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public int sumFirstAndLastDigit(int num) 
+	{
+		
+		int lastDigit = num % 10;
+		int firstDigit;
+		int tempNumber;
+		
+		tempNumber = num;
+		
+		if (num<0)
+			{
+				return -1;
+			}
+		
+		while (tempNumber>=10) 
+			{
+				tempNumber = tempNumber/10;
+			}
+		
+				firstDigit = tempNumber;
+			 	return firstDigit + lastDigit;
 	}
-
+//=================================================================================
 	/**
 	 * 10. Reverse String
 	 * 
 	 * Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
 	 */
-	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
-
+	public String reverse(String string) 
+		{
+			String reversedString = "";
+			for (int i=string.length()-1; i>=0; i--) 
+				{
+					reversedString = reversedString + string.charAt(i);
+				}
+			return reversedString;
+		}
+//=================================================================================
 	/**
 	 * 11. Acronyms
 	 * 
@@ -231,11 +420,23 @@ public class EvaluationService {
 	 * Acronyms)! Help generate some jargon by writing a program that converts a
 	 * long name like Portable Network Graphics to its acronym (PNG).
 	 */
-	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
+	public String acronym(String phrase) 
+	{
+		
+		String acronymGenerator = "";
+		acronymGenerator += phrase.toUpperCase().charAt(0);
 
+        for (int i = 1; i <= phrase.length()-1; i++) 
+        	{
+            	if (phrase.charAt(i - 1) == ' ' || phrase.charAt(i - 1) == '-') 
+            	{
+            		acronymGenerator += phrase.toUpperCase().charAt(i);
+            	}
+        	}
+        return acronymGenerator;
+			
+	}
+//=======================================================================================
 	/**
 	 * 12. Triangles
 	 * 
@@ -247,63 +448,96 @@ public class EvaluationService {
 	 * for the purposes of this exercise we'll say at least two.) A scalene triangle
 	 * has all sides of different lengths.
 	 */
-	static class Triangle {
+	static class Triangle 
+	{
 		private double sideOne;
 		private double sideTwo;
 		private double sideThree;
 
-		public Triangle() {
+		public Triangle() 
+		{
 			super();
 		}
 
-		public Triangle(double sideOne, double sideTwo, double sideThree) {
+		public Triangle(double sideOne, double sideTwo, double sideThree) 
+		{
 			this();
 			this.sideOne = sideOne;
 			this.sideTwo = sideTwo;
 			this.sideThree = sideThree;
 		}
 
-		public double getSideOne() {
+		public double getSideOne() 
+		{
 			return sideOne;
 		}
 
-		public void setSideOne(double sideOne) {
+		public void setSideOne(double sideOne) 
+		{
 			this.sideOne = sideOne;
 		}
 
-		public double getSideTwo() {
+		public double getSideTwo() 
+		{
 			return sideTwo;
 		}
 
-		public void setSideTwo(double sideTwo) {
+		public void setSideTwo(double sideTwo) 
+		{
 			this.sideTwo = sideTwo;
 		}
 
-		public double getSideThree() {
+		public double getSideThree() 
+		{
 			return sideThree;
 		}
 
-		public void setSideThree(double sideThree) {
+		public void setSideThree(double sideThree) 
+		{
 			this.sideThree = sideThree;
 		}
 
-		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		public boolean isEquilateral() 
+		{
+			
+			if ((sideOne == sideTwo) &&  (sideTwo == sideThree))
+				{ 
+					return true;
+				}
+			else
+				{
+					return false;
+				}
 		}
 
-		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		public boolean isIsosceles() 
+		{
+			if((sideOne == sideTwo) || (sideOne == sideThree) || (sideTwo == sideThree)) 
+				{
+					return true;
+				}
+			else
+				{
+					return false;
+				}
+		
 		}
 
-		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		public boolean isScalene() 
+		{
+			if((sideOne != sideTwo) && (sideOne != sideThree) && (sideTwo != sideThree))
+				{
+					return true;
+				}
+			else
+				{
+					return false;
+				}
+			
 		}
 
 	}
-
+//==============================================================================
 	/**
 	 * 13. Scrabble Score
 	 * 
@@ -318,10 +552,65 @@ public class EvaluationService {
 	 * 
 	 * 3 + 2*1 + 2*3 + 2 + 1 = 3 + 2 + 6 + 3 = 5 + 9 = 14
 	 */
-	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
-	}
+	public int getScrabbleScore(String string) 
+	{
+		
+		int score =0;
+		String stringInUppercase = string.toUpperCase();
+		for (int i =0; i < stringInUppercase.length(); i++) 
+		{
+			char scoredLetter = stringInUppercase.charAt(i);
+	        switch (scoredLetter) 
+	        {
+		        
+	            case 'A':
+	            case 'E':
+	            case 'I':
+	            case 'O':
+	            case 'U':
+	            case 'L':
+	            case 'N':
+	            case 'R':
+	            case 'S':
+	            case 'T':
+	                score +=1; break;
+	                
+	            case 'D':
+	            case 'G':
+	                score +=2; break;
+	                
+	            case 'B':
+	            case 'C':
+	            case 'M':
+	            case 'P':
+	                score +=3; break;
+	                
+	            case 'F':
+	            case 'H':
+	            case 'V':
+	            case 'W':
+	            case 'Y':
+	                score +=4; break;
+	                
+	            case 'K':
+	                score +=5; break;
+	                
+	            case 'J':
+	            case 'X':
+	                score +=8; break;
+	                
+	            case 'Q':
+	            case 'Z':
+	                score +=10; break;
+	                
+	            default: break;
+	        }
+		}
+		return score;
+	 }
+		
+	
+//===========================================================================================	
 
 	/**
 	 * 14. Clean the Phone Number
@@ -356,10 +645,25 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		return null;
+	public String cleanPhoneNumber(String string) 
+	{
+		String cleanedPhNumber = string.replaceAll("[^0-9]", "");
+		if (cleanedPhNumber.length()>=11) 
+		{
+			throw new IllegalArgumentException("Telephone Number is not valid");
+		}
+		else if (string.matches("^[a-zA-Z]") == true) 
+			{
+				throw new IllegalArgumentException("Telephone Number must be numeric");
+			}
+		if (string.contains("@:!") == true)
+		{
+			throw new IllegalArgumentException("Telephone Number must be numeric");
+		}
+		else
+			return cleanedPhNumber;
 	}
-
+//========================================================================================
 	/**
 	 * 15. Recurring Word Counter
 	 * 
@@ -368,11 +672,28 @@ public class EvaluationService {
 	 * For example for the input "olly olly in come free" olly: 2 in: 1 come: 1
 	 * free: 1
 	 */
-	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public Map<String, Integer> wordCount(String string) 
+	{
+			String word[] = string.split("\\s*(,|\\s)\\s*");
+			Map<String, Integer> recurrence = new HashMap<>();
+			for (String w:word) 
+			{
+				if(recurrence.containsKey(w)) 
+				{
+					int currentCount = recurrence.get(w); 
+					recurrence.put(w, currentCount + 1);
+				
+				} 
+				else 
+				{
+					recurrence.put(w, 1);
+				
+				}
+			}
+			
+		return recurrence;
 	}
-
+//========================================================================================
 	/**
 	 * 16. Armstrong Number
 	 * 
@@ -387,10 +708,40 @@ public class EvaluationService {
 	 * != 1^3 + 5^3 + 4^3 = 1 + 125 + 64 = 190 Write some code to determine whether
 	 * a number is an Armstrong number.
 	 */
-	public boolean isArmstrongNumber(int input) {
-		return false;
+	public boolean isArmstrongNumber(int input) 
+	{
+		int number = input;
+		int remainder = 0;
+		int sum = 0;
+		int digits =0;
+		
+		
+		while (number!=0) 
+		{
+			number/=10;
+			++digits;
+		}
+		
+		number = input;
+		while (number!=0) 
+			{
+				remainder = number % 10;
+				sum+= Math.pow(remainder, digits);
+				number/= 10;
+			}
+		if (sum == input) 
+			{
+				return true; 
+			}
+		else 
+			{
+				return false;
+			}
 	}
-
+	
+		
+	
+//==========================================================
 	/**
 	 * 17. Prime Factors
 	 * 
@@ -399,11 +750,23 @@ public class EvaluationService {
 	 * 
 	 * Note that 1 is not a prime number.
 	 */
-	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
-
+	public List<Long> calculatePrimeFactorsOf(long l) 
+	{
+		long number = l;
+        List<Long> primeFactors = new ArrayList<Long>();
+        for (long i = 2; i <= number; i++) 
+        {
+            while (number % i == 0) 
+            {
+                primeFactors.add(i);
+                number /= i;
+            }
+        }
+        return primeFactors;
+    }
+		
+	
+//============================================================
 	/**
 	 * 18. Calculate Nth Prime
 	 * 
@@ -415,11 +778,34 @@ public class EvaluationService {
 	 * If your language provides methods in the standard library to deal with prime
 	 * numbers, pretend they don't exist and implement them yourself.
 	 */
-	public int calculateNthPrime(int k) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public int calculateNthPrime(int k) 
+	{
+	    int num = 1;
+	    int i= 2;
+	    int count = 0;
+	    if (k==0) 
+	    {
+	    	throw new IllegalArgumentException ("Undefined Prime");
+	    }
+	    		
+	    while (count < k)
+	    {
+	      num = num + 1;
+	      for (i = 2; i <= num; i++)
+	      { 
+	        if (num % i == 0) 
+	        {
+	          break;
+	        }
+	      }
+	      if ( i == num){
+	        count = count+1;
+	      }
+	    }
+	    return num;
+		
 	}
-
+//================================================================
 	/**
 	 * 19. Pangram
 	 * 
@@ -432,11 +818,33 @@ public class EvaluationService {
 	 * The alphabet used consists of ASCII letters a to z, inclusive, and is case
 	 * insensitive. Input will not contain non-ASCII symbols.
 	 */
-	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	public boolean isPangram(String string) 
+	{
+		  boolean[] myLetters = new boolean[26]; 
+		  Arrays.fill(myLetters, false);
+		  int index = 0;
+	      
+	      String lowercasestring = string.toLowerCase();
+	      for (int i = 0; i < lowercasestring.length(); i++) 
+	      {
+	         if ( string.charAt(i) >= 'a' && lowercasestring.charAt(i) <= 'z') 
+	         	{
+		            index = string.charAt(i) - 'a'; 
+		            myLetters[index] = true; 
+	         	}
+	      
+	      }
+	      for (boolean index1: myLetters) 
+	      {
+	         if (!index1) {
+	           return false;}
+	        
+	      }
+	    return true; 
 	}
-
+		
+	
+//======================================================================
 	/**
 	 * 20. Sum of Multiples 
 	 * 
@@ -448,10 +856,33 @@ public class EvaluationService {
 	 * 
 	 * The sum of these multiples is 78.
 	 */
-	public int getSumOfMultiples(int i, int[] set) {
-		return 0;
+	public int getSumOfMultiples(int i, int[] set) 
+	{
+		
+			int sum = 0;
+			List <Integer> past_multiples = new ArrayList<Integer>();
+			for(int multIndx = 0; multIndx < set.length; multIndx++)
+			{
+				
+				for(int indx = 1; indx <= i; indx++)
+				{
+					int multiple = indx*set[multIndx];
+					if(multiple < i)
+					{
+						if(!past_multiples.contains(multiple))
+						{
+							sum += multiple;
+							past_multiples.add(multiple);
+						}
+					}
+					else
+						break;
+				}
+			}
+			return sum;
 	}
-	
+
+//============================================================================================
 	/**
 	 * 21. Three Magic Numbers
 	 * 
@@ -462,10 +893,18 @@ public class EvaluationService {
 	 * Generate the 3 random numbers (1 - 100 inclusive) using the java.util.Random class.
 	 */
 	
-	public int[] threeLuckyNumbers() {
-		return null;
+	public int[] threeLuckyNumbers() 
+	{
+		Random rand = new Random();
+		int upperlimit = 101;
+		int[] myArray = new int[3];
+		for(int i=0; i<= myArray.length-1; i++) 
+		{
+			myArray[i] = rand.nextInt(upperlimit); 
+		}
+		return myArray;
 	}
-	
+//==================================================================================================	
 	/*
 	 * 22. Easy Guessing Game
 	 * 
@@ -476,7 +915,9 @@ public class EvaluationService {
 	 * You must use the Math.random class to generate a random number between x and y.
 	 */
 	
-	public int guessingGame(int x, int y) {
-		return 0;
+	public int guessingGame(int x, int y) 
+	{
+		return (int) (Math.random()*y);}
+		
 	}
-}
+//=================================================================================================

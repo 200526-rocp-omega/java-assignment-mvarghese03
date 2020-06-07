@@ -63,6 +63,7 @@ public class EvaluationServiceTest {
 	 ******************************************************************/
 	@Test
 	public void testPrintMegaBytesAndKiloBytes1() {
+		
 		assertEquals("2500 KB = 2 MB and 452 KB", evaluationService.printMegaBytesAndKiloBytes(2500));
 	}
 	
